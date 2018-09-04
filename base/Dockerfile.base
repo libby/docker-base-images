@@ -1,0 +1,17 @@
+#FROM alpine:3.6
+ARG FROM_IMAGE_VERSION=3.6
+FROM alpine:$FROM_IMAGE_VERSION
+
+
+LABEL io.k8s.description="My base image"       io.k8s.display-name="Base Image"
+
+RUN apk --no-cache add curl
+
+RUN adduser -h /home/user -s /bin/sh -D user
+
+RUN mkdir ~/bin 
+RUN curl -fsSL https://goss.rocks/install | GOSS_VER=v0.3.6 GOSS_DST=/bin sh 
+
+WORKDIR /home/user
+
+USER user

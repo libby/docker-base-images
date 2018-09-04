@@ -1,0 +1,9 @@
+FROM base:latest
+
+LABEL io.k8s.description="My base JRE image"       io.k8s.display-name="Base JRE Image"
+
+USER root
+
+RUN      apk       add       --no-cache       --repository "http://dl-3.alpinelinux.org/alpine/edge/main"       --repository "http://dl-3.alpinelinux.org/alpine/edge/community"       --repository "http://dl-3.alpinelinux.org/alpine/edge/testing"             'openjdk8-jre>8.171'
+
+USER user
